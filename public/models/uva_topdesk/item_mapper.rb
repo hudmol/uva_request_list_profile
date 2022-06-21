@@ -1,6 +1,6 @@
 require 'securerandom'
 
-module HarvardAeon
+module UvaTopdesk
   class ItemMapper < RequestListItemMapper
 
     include ManipulateNode

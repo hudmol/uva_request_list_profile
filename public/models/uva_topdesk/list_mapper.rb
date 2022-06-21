@@ -1,4 +1,4 @@
-module HarvardAeon
+module UvaTopdesk
   class ListMapper < RequestListMapper
 
     RequestList.register_list_mapper(self, :uva_topdesk)

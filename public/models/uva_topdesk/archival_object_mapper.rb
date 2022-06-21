@@ -1,4 +1,4 @@
-module HarvardAeon
+module UvaTopdesk
   class ArchivalObjectMapper < ItemMapper
 
     RequestList.register_item_mapper(self, :uva_topdesk, ArchivalObject)

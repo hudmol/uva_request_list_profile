@@ -1,4 +1,4 @@
-module HarvardAeon
+module UvaTopdesk
   class ResourceMapper < ItemMapper
 
     RequestList.register_item_mapper(self, :uva_topdesk, Resource)
