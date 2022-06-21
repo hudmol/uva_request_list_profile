@@ -38,7 +38,7 @@ module UvaTopdesk
     end
 
 
-    def as_aeon_request(item_map)
+    def as_topdesk_request(item_map)
       num = SecureRandom.hex(4)
       Hash[[['Request', num]] + without_unneeded_fields(item_map).map {|k,v| [k+'_'+num, v[0,255]]}]
     end

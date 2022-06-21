@@ -10,7 +10,7 @@ module UvaTopdesk
 
 
     def form_fields(mapped)
-      [as_aeon_request(with_mapped_container(mapped, {
+      [as_topdesk_request(with_mapped_container(mapped, {
         'Site'           => mapped.ext(:site).name,
         'ReferenceNumber' => mapped.ext(:hollis).id,
         'ItemTitle'      => mapped.collection.name,

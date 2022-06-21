@@ -27,10 +27,10 @@ module UvaTopdesk
         'ItemIssue'      => mapped.record.id,
       }
 
-      return [as_aeon_request(shared_fields)] unless mapped.container.has_multi?
+      return [as_topdesk_request(shared_fields)] unless mapped.container.has_multi?
 
       mapped.container.multi.map {|c|
-        as_aeon_request(with_mapped_container(mapped, shared_fields, c))
+        as_topdesk_request(with_mapped_container(mapped, shared_fields, c))
       }
     end
 

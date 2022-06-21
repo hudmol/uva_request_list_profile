@@ -8,7 +8,7 @@ module UvaTopdesk
         'SystemId'              => 'ArchivesSpace',
         'ReturnLinkURL'         => AppConfig[:public_proxy_url] + '/plugin/request_list',
         'ReturnLinkSystemName'  => @opts[:return_link_label],
-        'AeonForm'              => 'EADRequest',
+        'TopdeskForm'              => 'EADRequest',
         'WebRequestForm'        => 'DefaultRequest',
         'DocumentType'          => 'Default',
         'RequestType'           => 'Loan',
