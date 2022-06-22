@@ -1,0 +1,32 @@
+.rl-ha-type-select {
+    text-transform: uppercase;
+    font-family: "Trueno", "Helvetica Neue", Arial, sans-serif;
+}
+
+.infinite-item i.fa-times {
+    display: inline;
+}
+
+.infinite-item i.fa-plus {
+    display: inline;
+}
+
+.rl-display-label {
+  font-weight: bold;
+  text-align: left;
+  width: 1%;
+  padding: 0px 6px 0px 0px;
+}
+
+.rl-display-container-cell {
+  margin-left: 0px;
+  margin-right: 10px;
+}
+
+.rl-item-display, td {
+  padding-left: 10px !important;
+}
+
+.rl-display-spanner {
+  padding-left: 2px !important;
+}

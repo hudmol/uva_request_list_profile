@@ -1,0 +1,8 @@
+en:
+  plugin:
+    request_list:
+      topdesk_button_label: Topdesk
+      collection: Found In
+      call_number: Collection Call Number
+      component_id: Item Call Number
+      restrictions: Restrictions
