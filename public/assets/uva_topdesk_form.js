@@ -1,7 +1,7 @@
 $(function() {
 
     // all items selected on load
-    $('.rl-item-check').props('checked', true);
+    $('.rl-item-check').prop('checked', true);
 
 
   $.fn.combobox.defaults.template = '<div class="combobox-container input-group"><input type="hidden" /><input type="text" autocomplete="off"/><span class="input-group-btn btn dropdown-toggle" data-dropdown="dropdown"><span class="caret"/><span class="combobox-clear"><span class="icon-remove"></span></span></span></div>';
