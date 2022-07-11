@@ -3,6 +3,12 @@ $(function() {
     // all items selected on load
     $('.rl-item-check').prop('checked', true);
 
+    // reset user type
+    $(".rl-uva-user-type-fields").hide();
+    $('#user_type_select>option:eq(0)').prop('selected', true);
+
+    // reset terms and conditions
+    $('input[name=terms_and_conditions]').prop('checked', false);
 
   $.fn.combobox.defaults.template = '<div class="combobox-container input-group"><input type="hidden" /><input type="text" autocomplete="off"/><span class="input-group-btn btn dropdown-toggle" data-dropdown="dropdown"><span class="caret"/><span class="combobox-clear"><span class="icon-remove"></span></span></span></div>';
   $(function() {
@@ -33,37 +39,20 @@ $(function() {
   });
 
 
-  $("#request_type_select").change(function() {
+  $("#user_type_select").change(function() {
     var selected = this.selectedOptions[0];
-    var inputs = JSON.parse(selected.getAttribute("value"));
-    for(var name in inputs) {
-      $(this).parents('.rl-form').find("input[name=" + name + "]").attr("value", inputs[name]);
-    }
-    $('.rl-ha-options-form').hide();
-    $('.rl-ha-item-form').hide();
-    if (selected.text == 'Reading room') {
-      $("#rl-readingroom-options-form").show();
-      $(".rl-ha-additional-fields").slideDown();
-      $('.rl-ha-questions-label').html($('.rl-ha-questions-label').data('other-label'));
-      $('.rl-ha-questions-input').attr('title', $('.rl-ha-questions-input').data('other-help'));
-    } else if (selected.text == 'Saved') {
-      $("#rl-saved-options-form").show();
-      $(".rl-ha-additional-fields").slideDown();
-      $('.rl-ha-questions-label').html($('.rl-ha-questions-label').data('other-label'));
-      $('.rl-ha-questions-input').attr('title', $('.rl-ha-questions-input').data('other-help'));
-    } else if (selected.text == 'Photoduplication') {
-      $("#rl-photoduplication-options-form").show();
-      $(".rl-ha-additional-fields").slideDown();
-      $('.rl-ha-questions-label').html($('.rl-ha-questions-label').data('photoduplication-label'));
-      $('.rl-ha-questions-input').attr('title', $('.rl-ha-questions-input').data('photoduplication-help'));
+
+    $(".rl-uva-user-type-fields").slideUp();
+
+    if (selected.value == 'internal') {
+      $('.rl-uva-user-type-external-fields').hide();
+      $(".rl-uva-user-type-internal-fields").show();
+      $(".rl-uva-user-type-fields").slideDown();
+    } else if (selected.value == 'external') {
+      $('.rl-uva-user-type-internal-fields').hide();
+      $(".rl-uva-user-type-external-fields").show();
+      $(".rl-uva-user-type-fields").slideDown();
     } else {
-      $(".rl-ha-additional-fields").slideUp('normal', function() {
-        var form = $(".rl-ha-options-form");
-        form.hide();
-        form.find("select").val("");
-        form.find("textarea").val("");
-        form.find("input").val("");
-      });
     }
   });
 

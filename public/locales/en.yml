@@ -6,3 +6,20 @@ en:
       call_number: Collection Call Number
       component_id: Item Call Number
       restrictions: Restrictions
+      title_message: we need some helpy words here
+      expanded_help: and more words here
+      uva:
+        options:
+          preferred_date: Preferred date to view requested materials (Please allow at least 3 working days for processing)
+          user_type: Select what type of user you are
+          user_types:
+            noselect: Please select your user type ...
+            internal: UvA/AMC students and staff
+            external: External User
+          uvanetid: UvAnetId
+          internal_email: Email
+          user_name: Name
+          external_email: Email
+          library_card: Library card number
+          telephone: Telephone
+          terms_and_conditions:  I agree to the Terms and Conditions of the Allard Pierson
