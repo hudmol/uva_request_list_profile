@@ -1,9 +1,8 @@
 <link href="<%= "/assets/datepicker.css" %>" media="all" rel="stylesheet" type="text/css">
 
-<%= javascript_include_tag 'bootstrap-datepicker' %>
-<%= javascript_include_tag 'bootstrap-combobox' %>
-
-<%= javascript_include_tag 'uva_topdesk_form' %>
+<%= javascript_include_tag "#{AppConfig[:public_proxy_prefix]}assets/bootstrap-datepicker.js?_t=#{ASConstants.VERSION}" %>
+<%= javascript_include_tag "#{AppConfig[:public_proxy_prefix]}assets/bootstrap-combobox.js?_t=#{ASConstants.VERSION}" %>
+<%= javascript_include_tag "#{AppConfig[:public_proxy_prefix]}assets/uva_topdesk_form.js?_t=#{ASConstants.VERSION}" %>
 
 <% handler.list_map.each do |name, value| %>
   <input type="hidden" name="<%= name %>" value="<%= value  %>">
