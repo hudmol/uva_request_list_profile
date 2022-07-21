@@ -40,7 +40,7 @@ module UvaTopdesk
 
     def as_topdesk_request(item_map)
       num = SecureRandom.hex(4)
-      Hash[[['Request', num]] + without_unneeded_fields(item_map).map {|k,v| [k+'_'+num, v[0,255]]}]
+      Hash[[['Request', num]] + without_unneeded_fields(item_map).map {|k,v| [k+'__'+num, v[0,255]]}]
     end
 
 

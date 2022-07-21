@@ -93,4 +93,116 @@ $(function() {
       });
   });
 
+  $('.rl-uva-list-input').on('change keyup paste', function(e) {
+      $(this).closest('.form-group').css('background', 'initial');
+  });
+
+  $('.uva-submit-requests').click(function(e) {
+      e.preventDefault();
+	    var self = window.request_list;
+	    var startListLength = self.getList().length;
+	    var handler = $('#rl-handler-uva_test_topdesk');
+	    var checkedItems = handler.find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked');
+//      console.log(checkedItems);
+
+	    // Don't allow submission of an empty list
+	    if (checkedItems.length == 0) {
+	        self.showAlertModal(HARVARD_AEON_MESSAGES['empty_list_error_message']);
+	        return false;
+	    }
+
+	    // Don't allow submission if required fields are unfilled
+	    var unfilled_fields = $('.rl-uva-list-input:visible').filter('.required')
+                                                           .filter(function() {
+                                                               if ($(this).is('[type=checkbox]')) {
+                                                                   return !$(this).prop('checked');
+                                                               } else {
+                                                                   return $(this).val() == "";
+                                                               }
+                                                           });
+	    if (unfilled_fields.length > 0) {
+	        var msg = '<p>' + HARVARD_AEON_MESSAGES['unfilled_fields_error_message'] + "</p><ul>";
+          unfilled_fields.each(function(ix, uf) { msg += '<li>' + $(uf).closest('.form-group').children('label').text() + "</li>"; });
+          msg += '</ul>';
+	        self.showAlertModal(msg);
+	        unfilled_fields.closest('.form-group').css('background', '#fdd');
+	        return false;
+	    }
+
+      // build up the request data
+      var requestData = {};
+      var items = {};
+
+      $('.rl-form').find('input').each(function(ix, input) {
+
+          // skip hidden list inputs
+          if ($(input).hasClass('rl-uva-list-input') && $(input).is(':hidden')) {
+              return;
+          }
+
+          // skip unchecked items
+	        if ($(input).parents('.rl-list-item').length && !$(input).parents('.rl-list-item').find('.rl-item-check').is(':checked')) {
+              return;
+          }
+
+          var name = $(input).prop('name');
+          var value = $(input).val();
+
+          if (name.startsWith('item-check-')) {
+              return;
+          }
+
+          if (name == 'Request') {
+              return;
+          }
+
+          var splitName = name.split('__');
+          if (splitName.length > 1) {
+              var key = splitName.slice(-1)[0];
+              if (!items.hasOwnProperty(key)) {
+                  items[key] = {};
+              }
+              splitName.pop();
+              items[key][splitName.join('__')] = value;
+          } else {
+              requestData[name] = value;
+          }
+      });
+
+      // special handling for desired materials
+      $('.rl-form').find('.rl-list-item textarea').each(function(ix, textarea) {
+          $(textarea).closest('.rl-list-item').find('.rl-item-form').find('input[name=Request]').each(function(ix, input) {
+              // if the item is unchecked then there won't be an entry in items
+              if (items.hasOwnProperty($(input).val())) {
+                  items[$(input).val()][$(textarea).prop('name')] = $(textarea).val();
+              }
+          });
+      });
+
+      requestData['items'] = Object.values(items);
+
+      // submit
+      $.ajax({
+          url: $('.rl-form').prop('action'),
+          data: { "request_data": requestData },
+          type: 'POST',
+          dataType: 'json',
+          success: function (response) {
+	            $('#rl-handler-uva_test_topdesk').find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked').each(function(ix, rli) {
+                  self.removeFromList($(rli).data('uri'), true);
+                  self.removeFromForm($(rli));
+	            });
+              self.setUpList();
+
+	            var itemsSent = startListLength - self.getList().length;
+
+              // FIXME: show the user a message
+          },
+          error: function(obj, errorText, errorDesc) {
+              // FIXME: show the user a message
+              }});
+
+	    return true;
+  });
+
 });

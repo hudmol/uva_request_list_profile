@@ -29,13 +29,13 @@
 </div>
 
 
-<div class="row">
+<div class="row rl-uva-additional-fields">
 
   <div class="col-sm-3">
     <div class="form-group">
-      <label class="control-label"><%= t('plugin.uva_request_list_profile.options.user_type') %>: *</label>
+      <label class="control-label"><%= t('plugin.uva_request_list_profile.options.user_type') %> *</label>
       <div class="">
-        <select name="user_type" id="user_type_select" class="form-control">
+        <select name="user_type" id="user_type_select" class="form-control rl-uva-list-input required">
           <option value=""><%= t('plugin.request_list.uva.options.user_types.noselect') %></option>
           <option value="internal"><%= t('plugin.request_list.uva.options.user_types.internal') %></option>
           <option value="external"><%= t('plugin.request_list.uva.options.user_types.external') %></option>
@@ -50,34 +50,34 @@
   <div class="rl-uva-user-type-internal-fields">
     <div class="row">
       <div class="form-group col-sm-4">
-        <label class="control-label"><%= t('plugin.request_list.uva.options.uvanetid') %>: *</label>
-        <input class="form-control" name="uvanetid">
+        <label class="control-label"><%= t('plugin.request_list.uva.options.uvanetid') %> *</label>
+        <input class="form-control rl-uva-list-input required" name="uvanetid">
       </div>
       <div class="form-group col-sm-4">
-        <label class="control-label"><%= t('plugin.request_list.uva.options.internal_email') %>: *</label>
-        <input class="form-control" name="internal_email">
+        <label class="control-label"><%= t('plugin.request_list.uva.options.internal_email') %> *</label>
+        <input class="form-control rl-uva-list-input required" name="internal_email">
       </div>
     </div>
   </div>
   <div class="rl-uva-user-type-external-fields">
     <div class="row">
       <div class="form-group col-sm-4">
-        <label class="control-label"><%= t('plugin.request_list.uva.options.user_name') %>: *</label>
-        <input class="form-control" name="user_name">
+        <label class="control-label"><%= t('plugin.request_list.uva.options.user_name') %> *</label>
+        <input class="form-control rl-uva-list-input required" name="user_name">
       </div>
       <div class="form-group col-sm-4">
-        <label class="control-label"><%= t('plugin.request_list.uva.options.external_email') %>: *</label>
-        <input class="form-control" name="external_email">
+        <label class="control-label"><%= t('plugin.request_list.uva.options.external_email') %> *</label>
+        <input class="form-control rl-uva-list-input required" name="external_email">
       </div>
     </div>
     <div class="row">
       <div class="form-group col-sm-4">
-        <label class="control-label"><%= t('plugin.request_list.uva.options.library_card') %>: *</label>
-        <input class="form-control" name="library_card">
+        <label class="control-label"><%= t('plugin.request_list.uva.options.library_card') %> *</label>
+        <input class="form-control rl-uva-list-input required" name="library_card">
       </div>
       <div class="form-group col-sm-4">
-        <label class="control-label"><%= t('plugin.request_list.uva.options.telephone') %>:</label>
-        <input class="form-control" name="telephone">
+        <label class="control-label"><%= t('plugin.request_list.uva.options.telephone') %></label>
+        <input class="form-control rl-uva-list-input" name="telephone">
       </div>
     </div>
   </div>
@@ -85,9 +85,9 @@
 <br/>
 <div class="row">
       <div class="form-group col-sm-8">
-        <label class="control-label" title="Required"><%= t('plugin.request_list.uva.options.preferred_date') %>: *</label>
+        <label class="control-label" title="Required"><%= t('plugin.request_list.uva.options.preferred_date') %> *</label>
         <div class="input-group datepicker rl-datepicker">
-          <input class="date-field form-control rl-ha-list-input required"
+          <input class="date-field form-control rl-uva-list-input required"
                  title="<%= t('plugin.request_list.options.date_help') %>"
                  data-format="dd/mm/yyyy"
                  data-date="<%= Date.today.strftime('%d/%m/%Y') %>"
@@ -103,7 +103,7 @@
 <div class="row">
   <div class="form-group rl-uva-terms-and-conditions col-sm-8">
     <div class="form-group">
-      <input type="checkbox" name="terms_and_conditions"> &nbsp;
+      <input type="checkbox" name="terms_and_conditions" value="agree" class="rl-uva-list-input required"> &nbsp;
       <label class="control-label"><%= t('plugin.request_list.uva.options.terms_and_conditions') %></label>
     </div>
   </div>
@@ -112,7 +112,7 @@
 <div class="row">
   <div class="col-sm-2">
     <div style="padding-top:20px">
-      <button type="submit" class="btn btn-primary submit-requests"><%= t('plugin.request_list.submit_button_label') %></button>
+      <button type="submit" class="btn btn-primary uva-submit-requests"><%= t('plugin.request_list.submit_button_label') %></button>
     </div>
   </div>
 </div>
