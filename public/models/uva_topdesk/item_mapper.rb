@@ -7,9 +7,6 @@ module UvaTopdesk
 
     def map_extensions(mapped, item, repository, resource, resource_json)
       mapped.record.name = mapped.record.name.split(',').uniq.join(',')
-      mapped.ext(:site).name = repo_field_for(repository, 'Site')
-      mapped.ext(:location).name = repo_field_for(repository, 'Location')
-      mapped.ext(:hollis).id = hollis_number_for(resource_json)
       mapped.ext(:physical_location).name = physical_location_for(item.class == Container ? resource_json : item['json'])
       mapped.collection.ext(:access_restrictions, access_restrictions_for(resource_json))
       mapped.record.ext(:access_restrictions, access_restrictions_for(item['json']))
@@ -59,19 +56,6 @@ module UvaTopdesk
     end
 
 
-    def hollis_number_for(resource)
-      out = resource['notes'].select {|n| n['type'] == 'processinfo' && n['label'] == 'Alma ID'}
-                             .map {|n| n['subnotes'].map {|s| s['content'].strip}}
-                             .flatten.compact.join('; ')
-
-      return out unless out.empty?
-
-      resource['notes'].select {|n| n['type'] == 'processinfo' && n['label'] == 'Aleph ID'}
-                       .map {|n| n['subnotes'].map {|s| s['content'].strip}}
-                       .flatten.compact.join('; ')
-    end
-
-
     def access_restrictions_for(item)
       (item['notes'] || []).select {|n| n['type'] == 'accessrestrict'}
                    .map {|n| n['subnotes'].map {|s| s['content']}}
@@ -86,11 +70,10 @@ module UvaTopdesk
 
     def with_mapped_container(mapped, item_fields, container)
       item_fields.merge({
-        'gid'         => mapped.collection.uri + container.uri,
-        'ItemVolume'  => container.name.sub(/: .*$/, ''),
-        'ItemNumber'  => container.id,
-        'ItemIssue'   => [mapped.record.id, container.ext(:subs)].compact.select{|i| !i.empty?}.join(': '),
-        'ItemInfo5'   => container.ext(:location)
+        'container_title'   => container.name.sub(/: .*$/, ''),
+        'container_barcode' => container.id,
+        'container_uri'     => container.uri,
+        'location'          => container.ext(:location)
       })
     end
   end

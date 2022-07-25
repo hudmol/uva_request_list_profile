@@ -11,15 +11,15 @@ module UvaTopdesk
 
     def form_fields(mapped)
       [as_topdesk_request(with_mapped_container(mapped, {
-        'Site'           => mapped.ext(:site).name,
-        'ReferenceNumber' => mapped.ext(:hollis).id,
-        'ItemTitle'      => mapped.collection.name,
-        'ItemAuthor'     => mapped.creator.name,
-        'ItemDate'       => mapped.date.name,
-        'Location'       => mapped.ext(:location).name,
-        'SubLocation'    => mapped.ext(:physical_location).name,
-        'CallNumber'     => mapped.collection.id,
-        'ItemInfo2'      => mapped.collection.ext(:access_restrictions),
+        'resource_title'               => mapped.collection.name,
+        'resource_id'                  => mapped.collection.id,
+        'resource_uri'                 => mapped.collection.uri,
+
+        'creator'                      => mapped.creator.name,
+        'date'                         => mapped.date.name,
+        'location'                     => mapped.ext(:location).name,
+        'physical_location'            => mapped.ext(:physical_location).name,
+        'resource_access_restrictions' => mapped.collection.ext(:access_restrictions),
       }, mapped.container.multi.first))]
     end
 
