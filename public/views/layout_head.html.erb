@@ -1,1 +1,10 @@
 <%= stylesheet_link_tag "#{AppConfig[:public_proxy_prefix]}assets/uva_request_list.css?_t=#{ASConstants.VERSION}" %>
+
+<script>
+
+  UVA_MESSAGES = {
+    'success': "<%= t('plugin.request_list.uva.messages.success').gsub('"', '\"').html_safe %>",
+    'fail':    "<%= t('plugin.request_list.uva.messages.fail').gsub('"', '\"').html_safe %>"
+  };
+
+</script>

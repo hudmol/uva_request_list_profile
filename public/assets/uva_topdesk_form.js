@@ -103,7 +103,6 @@ $(function() {
 	    var startListLength = self.getList().length;
 	    var handler = $('#rl-handler-uva_test_topdesk');
 	    var checkedItems = handler.find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked');
-//      console.log(checkedItems);
 
 	    // Don't allow submission of an empty list
 	    if (checkedItems.length == 0) {
@@ -192,17 +191,18 @@ $(function() {
                   self.removeFromList($(rli).data('uri'), true);
                   self.removeFromForm($(rli));
 	            });
-              self.setUpList();
 
-	            var itemsSent = startListLength - self.getList().length;
-
-              // FIXME: show the user a message
+              // strip off the querystring
+              var new_location = location.href.replace(location.search, '');
+              new_location += '?sent=requests';
+              setTimeout(function() { location.replace(new_location); }, 100);
           },
           error: function(obj, errorText, errorDesc) {
-              // FIXME: show the user a message
-              }});
+              self.showAlertModal('<p>' + UVA_MESSAGES['fail'] + "</p>");
+          }
+      });
 
-	    return true;
+	    return false;
   });
 
 });

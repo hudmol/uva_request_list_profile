@@ -8,7 +8,11 @@ en:
       restrictions: Restrictions
       title_message: we need some helpy words here
       expanded_help: and more words here
+      sent_items_message: Thank you for your request(s). You will receive an email confirmation with the details and further instructions shortly.
       uva:
+        messages:
+          success: Thank you for your request(s). You will receive an email confirmation with the details and further instructions shortly.
+          fail: Unfortunately there was a problem processing your request. Please contact SOMEONE, or try again later. Thank you.
         options:
           preferred_date: Preferred date to view requested materials (Please allow at least 3 working days for processing)
           user_type: Select what type of user you are
