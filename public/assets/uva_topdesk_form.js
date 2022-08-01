@@ -180,29 +180,21 @@ $(function() {
 
       requestData['items'] = Object.values(items);
 
-      // submit
-      $.ajax({
-          url: $('.rl-form').prop('action'),
-          data: { "request_data": requestData },
-          type: 'POST',
-          dataType: 'json',
-          success: function (response) {
-	            $('#rl-handler-uva_test_topdesk').find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked').each(function(ix, rli) {
-                  self.removeFromList($(rli).data('uri'), true);
-                  self.removeFromForm($(rli));
-	            });
+      var rdhi = $("<input>", {type: 'hidden', name: 'request_data', value: JSON.stringify(requestData)})
 
-              // strip off the querystring
-              var new_location = location.href.replace(location.search, '');
-              new_location += '?sent=requests';
-              setTimeout(function() { location.replace(new_location); }, 100);
-          },
-          error: function(obj, errorText, errorDesc) {
-              self.showAlertModal('<p>' + UVA_MESSAGES['fail'] + "</p>");
-          }
-      });
+      handler.find('.rl-form').append(rdhi);
 
-	    return false;
+
+      handler.find('.rl-form').submit();
+
+      // FIXME: think about removing from list - when, how, if
+	    // handler.find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked').each(function(ix, rli) {
+      //     self.removeFromList($(rli).data('uri'), true);
+      //     self.removeFromForm($(rli));
+	    // });
+
+      return true;
+
   });
 
 });
