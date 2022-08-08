@@ -4,8 +4,8 @@ module UvaTopdesk
     RequestList.register_item_mapper(self, :uva_topdesk, Resource)
 
     def request_permitted?(item)
-      # only if childless
-      ArchivesSpaceClient.instance.get_raw_record(item['uri'] + '/tree/root')['child_count'] == 0
+      # only if childless and no restrictions apply
+      ArchivesSpaceClient.instance.get_raw_record(item['uri'] + '/tree/root')['child_count'] == 0 && !item['json']['restrictions_apply']
     end
 
 

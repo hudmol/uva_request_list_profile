@@ -3,6 +3,12 @@ module UvaTopdesk
 
     RequestList.register_item_mapper(self, :uva_topdesk, ArchivalObject)
 
+    def request_permitted?(item)
+      # not if restrictions apply
+      !item['json']['restrictions_apply']
+    end
+
+
     def map_extensions(mapped, item, repository, resource, resource_json)
       super
       mapped.ext(:level).name = item['level'].capitalize
