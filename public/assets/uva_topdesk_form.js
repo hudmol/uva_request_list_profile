@@ -121,12 +121,37 @@ $(function() {
                                                                    return $(this).val() == "";
                                                                }
                                                            });
-	    if (unfilled_fields.length > 0) {
-	        var msg = '<p>' + HARVARD_AEON_MESSAGES['unfilled_fields_error_message'] + "</p><ul>";
-          unfilled_fields.each(function(ix, uf) { msg += '<li>' + $(uf).closest('.form-group').children('label').text() + "</li>"; });
-          msg += '</ul>';
+
+      const validationFails = Array();
+
+	    var libcard = $('.rl-uva-list-input:visible').filter('[name=library_card]');
+      if (libcard.length && !libcard.val().trim().match(/92\d\d\d\d\d\d\d/)) {
+          validationFails.push(libcard);
+      }
+
+	    var internalEmail = $('.rl-uva-list-input:visible').filter('[name=internal_email]');
+      if (internalEmail.length && !internalEmail.val().trim().match(/^\S+\@(uva|student|hva)\.nl$/)) {
+          validationFails.push(internalEmail);
+      }
+
+	    if (unfilled_fields.length > 0 || validationFails.length > 0) {
+          var msg = '';
+          if (unfilled_fields.length > 0) {
+	            msg += '<p>' + HARVARD_AEON_MESSAGES['unfilled_fields_error_message'] + "</p><ul>";
+              unfilled_fields.each(function(ix, uf) { msg += '<li>' + $(uf).closest('.form-group').children('label').text() + "</li>"; });
+              msg += '</ul>';
+          }
+
+          if (validationFails.length > 0) {
+	            msg += '<p>Please enter a correct value for:</p><ul>';
+              $(validationFails).each(function(ix, vf) { msg += '<li>' + $(vf).closest('.form-group').children('label').text() +
+                                                                '<br/>' + $(vf).attr('title') + "</li>"; });
+              msg += '</ul>';
+          }
+
 	        self.showAlertModal(msg);
 	        unfilled_fields.closest('.form-group').css('background', '#fdd');
+	        $(validationFails).each(function(ix, vf) { $(vf).closest('.form-group').css('background', '#fdd'); });
 	        return false;
 	    }
 
