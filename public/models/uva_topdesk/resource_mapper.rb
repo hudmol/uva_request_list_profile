@@ -8,6 +8,11 @@ module UvaTopdesk
       ArchivesSpaceClient.instance.get_raw_record(item['uri'] + '/tree/root')['child_count'] == 0 && !item['json']['restrictions_apply']
     end
 
+    def map_extensions(mapped, item, repository, resource, resource_json)
+      super
+      mapped.ext(:finding_aid_author, item['json']['finding_aid_author'])
+      mapped.ext(:related_accession, item['json']['related_accessions'].map{|ra| ra['ref']}.join(', '))
+    end
 
     def form_fields(mapped)
       shared_fields = {
@@ -20,6 +25,8 @@ module UvaTopdesk
         'location'            => mapped.ext(:location).name,
         'physical_location'   => mapped.ext(:physical_location).name,
         'access_restrictions' => mapped.collection.ext(:access_restrictions),
+        'finding_aid_author'  => mapped.ext(:finding_aid_author).name,
+        'related_accession'   => mapped.ext(:related_accession),
       }
 
       return [as_topdesk_request(shared_fields)] unless mapped.container.has_multi?
