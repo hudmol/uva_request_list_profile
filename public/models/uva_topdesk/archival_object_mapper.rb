@@ -5,7 +5,16 @@ module UvaTopdesk
 
     def request_permitted?(item)
       # not if restrictions apply
-      !item['json']['restrictions_apply']
+      return false if item['json']['restrictions_apply']
+
+      # not if it lacks an instance
+      return false if item['json']['instances'].empty?
+
+      # not if it lacks a container instance
+      return false unless item['json']['instances'].find{|inst| inst['sub_container']}
+
+      # otherwise the request is permitted
+      return true
     end
 
 
