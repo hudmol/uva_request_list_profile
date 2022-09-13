@@ -21,7 +21,7 @@ module UvaTopdesk
     def map_extensions(mapped, item, repository, resource, resource_json)
       super
       mapped.ext(:level).name = item['level'].capitalize
-      mapped.collection.ext(:finding_aid_author , resource_json['finding_aid_author'])
+      mapped.collection.ext(:finding_aid_author, resource_json['finding_aid_author'])
       mapped.collection.ext(:related_accession, resource_json['related_accessions'].map{|ra| ra['ref']}.join(', '))
     end
 

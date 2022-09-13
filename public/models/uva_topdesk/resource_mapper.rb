@@ -10,8 +10,8 @@ module UvaTopdesk
 
     def map_extensions(mapped, item, repository, resource, resource_json)
       super
-      mapped.ext(:finding_aid_author, item['json']['finding_aid_author'])
-      mapped.ext(:related_accession, item['json']['related_accessions'].map{|ra| ra['ref']}.join(', '))
+      mapped.ext(:finding_aid_author).name = item['json']['finding_aid_author']
+      mapped.ext(:related_accession).name = item['json']['related_accessions'].map{|ra| ra['ref']}.join(', ')
     end
 
     def form_fields(mapped)
@@ -26,7 +26,7 @@ module UvaTopdesk
         'physical_location'   => mapped.ext(:physical_location).name,
         'access_restrictions' => mapped.collection.ext(:access_restrictions),
         'finding_aid_author'  => mapped.ext(:finding_aid_author).name,
-        'related_accession'   => mapped.ext(:related_accession),
+        'related_accession'   => mapped.ext(:related_accession).name,
       }
 
       return [as_topdesk_request(shared_fields)] unless mapped.container.has_multi?
