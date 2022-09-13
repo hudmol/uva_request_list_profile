@@ -22,8 +22,12 @@ en:
             external: External User
           uvanetid: UvAnetId
           internal_email: Email
+          internal_email_placeholder: "@uva.nl, @student.uva.nl or @hva.nl"
+          internal_email_title: "Must be a valid UvA email address at one of these domains: @uva.nl, @student.uva.nl or @hva.nl"
           user_name: Name
           external_email: Email
           library_card: Library card number
+          library_card_placeholder: 92XXXXXXX
+          library_card_title: Must match the pattern 92XXXXXXX where each X is a digit.
           telephone: Telephone
-          terms_and_conditions:  I agree to the <a href="https://uba.uva.nl" target="_blank">Terms and Conditions of the Allard Pierson</a>
+          terms_and_conditions: I agree to the <a href="https://uba.uva.nl" target="_blank">Terms and Conditions of the Allard Pierson</a>

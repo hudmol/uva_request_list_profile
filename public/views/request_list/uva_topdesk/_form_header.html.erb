@@ -58,7 +58,9 @@
       <div class="col-sm-4">
         <div class="form-group">
           <label class="control-label"><%= t('plugin.request_list.uva.options.internal_email') %> *</label>
-          <input class="form-control rl-uva-list-input required" name="internal_email" placeholder="@uva.nl, @student.uva.nl or @hva.nl" title="Must be a valid UvA email address at one of these domains: @uva.nl, @student.uva.nl or @hva.nl">
+          <input class="form-control rl-uva-list-input required" name="internal_email"
+                 placeholder="<%= t('plugin.request_list.uva.options.internal_email_placeholder') %>"
+                 title="<%= t('plugin.request_list.uva.options.internal_email_title') %>">
         </div>
       </div>
     </div>
@@ -82,7 +84,9 @@
       <div class="col-sm-4">
         <div class="form-group">
           <label class="control-label"><%= t('plugin.request_list.uva.options.library_card') %> *</label>
-          <input class="form-control rl-uva-list-input required" name="library_card" placeholder="92XXXXXXX" title="Must match the pattern 92XXXXXXX where each X is a digit.">
+          <input class="form-control rl-uva-list-input required" name="library_card"
+                 placeholder="<%= t('plugin.request_list.uva.options.library_card_placeholder') %>"
+                 title="<%= t('plugin.request_list.uva.options.library_card_title') %>">
         </div>
       </div>
       <div class="col-sm-4">
