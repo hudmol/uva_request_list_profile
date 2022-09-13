@@ -209,17 +209,13 @@ $(function() {
 
       handler.find('.rl-form').append(rdhi);
 
+	    handler.find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked').each(function(ix, rli) {
+          self.removeFromList($(rli).data('uri'), true, true);
+	    });
 
       handler.find('.rl-form').submit();
 
-      // FIXME: think about removing from list - when, how, if
-	    // handler.find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked').each(function(ix, rli) {
-      //     self.removeFromList($(rli).data('uri'), true);
-      //     self.removeFromForm($(rli));
-	    // });
-
       return true;
-
   });
 
 });
