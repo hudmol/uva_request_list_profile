@@ -3,7 +3,7 @@ class UvaRequestController <  ApplicationController
   skip_before_action  :verify_authenticity_token
 
   def proxy
-    uri = URI(AppConfig[:request_list][:request_handlers][:uva_test_topdesk][:broker_url])
+    uri = URI(AppConfig[:request_list][:request_handlers][:uva_handler][:broker_url])
 
     req = Net::HTTP::Post.new(uri)
     req['Content-Type'] = 'text/json'

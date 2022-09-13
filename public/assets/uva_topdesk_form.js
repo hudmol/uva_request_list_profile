@@ -101,7 +101,7 @@ $(function() {
       e.preventDefault();
 	    var self = window.request_list;
 	    var startListLength = self.getList().length;
-	    var handler = $('#rl-handler-uva_test_topdesk');
+	    var handler = $('#rl-handler-uva_handler');
 	    var checkedItems = handler.find('.rl-list').children('.rl-list-item').has('.rl-item-check:checked');
 
 	    // Don't allow submission of an empty list
