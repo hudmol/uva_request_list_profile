@@ -26,4 +26,4 @@ en:
           external_email: Email
           library_card: Library card number
           telephone: Telephone
-          terms_and_conditions:  I agree to the Terms and Conditions of the Allard Pierson
+          terms_and_conditions:  I agree to the <a href="https://uba.uva.nl" target="_blank">Terms and Conditions of the Allard Pierson</a>
