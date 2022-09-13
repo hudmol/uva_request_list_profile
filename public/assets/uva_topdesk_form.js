@@ -17,8 +17,6 @@ $(function() {
       $(".date-field:not(.initialised)", scope).each(function() {
         var $dateInput = $(this);
 
-//        $dateInput.datepicker({ daysOfWeekDisabled: [0,6] });
-
         if ($dateInput.parent().is(".input-group")) {
           $dateInput.parent().addClass("date");
         } else {
