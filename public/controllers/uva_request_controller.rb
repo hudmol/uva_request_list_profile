@@ -13,12 +13,6 @@ class UvaRequestController <  ApplicationController
       http.request(req)
     end
 
-    # temporary debugging
-    puts "RRRRRRRRRRRRResponse #{response.uri}"
-    puts "RRRRRRRRRRRRResponse #{response.code}"
-    puts "RRRRRRRRRRRRResponse #{response.message}"
-    puts "RRRRRRRRRRRRResponse #{response.body}"
-
     if response.code == '200'
       flash[:success] = I18n.t('plugin.request_list.uva.messages.success')
     else
