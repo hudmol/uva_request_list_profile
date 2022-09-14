@@ -6,7 +6,14 @@ en:
       call_number: Collection Call Number
       component_id: Item Call Number
       restrictions: Restrictions
-      title_message: we need some helpy words here
+      title_message: |
+        <p>Scroll down to review all the items on your list and when you click on 'Submit Requests'
+        they will be sent to Topdesk, a separate system for managing requests for special collections and archives materials.</p>
+        <p>Important Information</p>
+        <ul>
+        <li>Items will only remain in this list for the duration of your browser session.</li>
+        <li>Requests for materials held off-site require at least 3 working days to process.</li>
+        </ul>
       expanded_help: and more words here
       sent_items_message: Thank you for your request(s). You will receive an email confirmation with the details and further instructions shortly.
       uva:
