@@ -127,8 +127,9 @@ $(function() {
           validationFails.push(libcard);
       }
 
+      // @uva.nl, @student.uva.nl, @amc.uva.nl or @hva.nl
 	    var internalEmail = $('.rl-uva-list-input:visible').filter('[name=internal_email]');
-      if (internalEmail.length && !internalEmail.val().trim().match(/^\S+\@(uva|student|hva)\.nl$/)) {
+      if (internalEmail.length && !internalEmail.val().trim().match(/^\S+\@(uva|student\.uva|amc\.uva|hva)\.nl$/)) {
           validationFails.push(internalEmail);
       }
 

@@ -25,16 +25,18 @@ en:
           user_type: Select what type of user you are
           user_types:
             noselect: Please select your user type ...
-            internal: UvA/AMC students and staff
+            internal: UvA/AMC/HvA students and staff
             external: External User
-          uvanetid: UvAnetId
+          uvanetid: UvAnetID/HvA-ID
           internal_email: Email
-          internal_email_placeholder: "@uva.nl, @student.uva.nl or @hva.nl"
-          internal_email_title: "Must be a valid UvA email address at one of these domains: @uva.nl, @student.uva.nl or @hva.nl"
+          internal_email_placeholder: "@uva.nl, @student.uva.nl, @amc.uva.nl or @hva.nl"
+          internal_email_title: "Must be a valid UvA email address at one of these domains: @uva.nl, @student.uva.nl, @amc.uva.nl or @hva.nl"
           user_name: Name
           external_email: Email
           library_card: Library card number
           library_card_placeholder: 92XXXXXXX
           library_card_title: Must match the pattern 92XXXXXXX where each X is a digit.
+          library_card_help: A library card is required to consult materials. You can request a library card via <a href="http://www.lenerspas.nl/site/language/switch_to/english" target="_blank">www.lenerspas.nl</a>
           telephone: Telephone
           terms_and_conditions: I agree to the <a href="https://uba.uva.nl" target="_blank">Terms and Conditions of the Allard Pierson</a>
+          desired_materials: Specify your request (not required for items)
