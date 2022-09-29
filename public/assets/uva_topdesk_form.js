@@ -10,6 +10,9 @@ $(function() {
     // reset terms and conditions
     $('input[name=terms_and_conditions]').prop('checked', false);
 
+    // hide unneeded more info link
+    $('.rl-ha-expand-help').hide();
+
   $.fn.combobox.defaults.template = '<div class="combobox-container input-group"><input type="hidden" /><input type="text" autocomplete="off"/><span class="input-group-btn btn dropdown-toggle" data-dropdown="dropdown"><span class="caret"/><span class="combobox-clear"><span class="icon-remove"></span></span></span></div>';
   $(function() {
     var initDateFields = function(scope) {
