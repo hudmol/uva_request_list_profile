@@ -1,0 +1,101 @@
+<% @item_count ||= 0; @item_count += 1 %>
+<% is_record = item.type == ArchivalObject %>
+
+<div class="rl-item-display">
+
+<div class="pull-right">
+  <%= render partial: 'request_list/remove_from_list_button', locals: {:uri => item.uri } %>
+
+  <div class="rl-edited-indicator" title="<%= t('plugin.request_list.edited_indicator_message') %>">
+    <i class="fa fa-edit"></i>
+  </div>
+</div>
+
+<table class="rl-item-table">
+  <tr>
+    <td class="rl-display" rowspan="<%= is_record ? 5 : 4 %>" width="30px">
+      <input type="checkbox" name="item-check-<%= @item_count %>" class="rl-item-check"/>
+    </td>
+    <td class="rl-display rl-display-left" rowspan="<%= is_record ? 5 : 4 %>" width="30px">
+      <div class="rl-item-count-label"><%= @item_count %></div>
+    </td>
+
+    <% title_attr = is_record ? item.record : item.collection %>
+    <% title_label = is_record ? 'record' : 'collection' %>
+
+    <td class="rl-display-label">
+      <%= t('plugin.request_list.' + title_label) %>:
+    </td>
+
+    <td class="rl-display rl-display-<%= title_label %>">
+      <span class="rl-display-title">
+        <a href="<%= app_prefix(title_attr.uri) %>"><%= title_attr.name %></a>
+      </span>
+
+      <% unless title_attr.id.empty? %>
+        <span class="rl-display rl-display-id"><%= title_attr.id %></span>
+      <% end %>
+    </td>
+  </tr>
+
+  <% if is_record %>
+    <tr>
+      <td class="rl-display-label">
+        <%= t('plugin.request_list.collection') %>:
+      </td>
+      <td class="rl-display rl-display-collection <%= is_record ? '' : 'rl-display-title'  %>">
+        <a href="<%= app_prefix(item.collection.uri) %>"><%= item.collection.name %></a>
+
+        <% unless item.collection.id.empty? %>
+          <span class="rl-display rl-display-id"><%= item.collection.id %></span>
+        <% end %>
+
+        <% item.collection.multi.drop(1).map do |c| %>
+          >> <a href="<%= app_prefix(c.uri) %>"><%= c.name %></a>
+
+          <% unless c.id.empty? %>
+            <span class="rl-display rl-display-id"><%= c.id %></span>
+          <% end %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+
+  <tr>
+    <td class="rl-display-label">
+      <%= t('plugin.request_list.repository') %>:
+    </td>
+    <td class="rl-display rl-display-repository">
+      <a href="<%= app_prefix(item.repository.uri) %>">  <%= item.repository.name %></a>
+    </td>
+  </tr>
+
+  <tr>
+    <td>
+    </td>
+
+    <td class="rl-display rl-display-container">
+      <div class="rl-display-container-pane">
+        <% item.container.multi.map do |container| %>
+          <div class="rl-display-container-cell">
+            <i class="fa fa-archive"></i>
+            <a href="<%= app_prefix(container.uri) %>">  <%= container.name %></a>
+            <%= ('(' + container.ext(:subs) + ')') unless container.ext(:subs).empty? %>
+          </div>
+        <% end %>
+      </div>
+    </td>
+
+  </tr>
+
+  <tr>
+    <td></td>
+    <td>
+      <%= render partial: "request_list/#{handler.profile}/item_display", locals: {:form => form, :item => item, :handler => handler } %>
+    </td>
+  </tr>
+</table>
+
+<%= render(partial: 'request_list/expand_item_button', locals: {:item => item }) if handler.list_opts[:expandable_items] %>
+
+</div>
